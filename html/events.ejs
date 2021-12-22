@@ -1,0 +1,128 @@
+<!-- 
+    The events.ejs file contains the structure for 
+    listing out all of the events created by the 
+    admin. The file contains a function written
+    in JavaScript that simplifies the event time
+    into a more readable format. The events are
+    listed out in a card format. Each event card
+    contains the event name, the event date,
+    and the event location.
+    ...
+    Project: Aptiv Web Application
+    Authors: Andrew Krause, Riley Radle, 
+    Anthony Musbach, Zach Gephart
+    Class: Software Design IV (CS 341)
+    Group: #2
+    Date: 12/15/2021
+    ...
+-->
+
+<%- include('./partials/home_header.ejs') %>
+
+    <!-- 
+        Include EJS to display any success messages to the ADMIN
+        if they have successfully cancelled an entire event.
+    -->
+    <% if(successCancelled.length > 0) { %>
+        <div class="confirmation">
+            <div class="elementToFadeInAndOut message-format">
+                <h1><%= successCancelled %></h1>
+            </div>
+        </div>
+    <% } %>
+
+    <div class="events-ejs my-auto">
+        <div class="background"></div>
+        <!-- List of programs/events -->
+        <header>
+            <h1>Get Involved</h1>
+            <small>Volunteer | Donate</small>
+        </header>
+                <!-- Include a section to style each event in the list of events -->
+                <section class="events-list mb-5">
+                    <!-- Loop through the database and display the events -->
+                    <% events.forEach(function(event) { %>
+
+                        <!-- If the event has not been cancelled by the ADMIN, display it below -->
+                        <% if(event.eventActive == true) { %>
+
+                            <a href="/events/<%=event._id%>">
+                                <div class="event">
+                                    <h2> <%= event.eventName %> </h2>
+
+                                    <!-- Include a function to simplify the date display -->
+                                    <% function simplifyEventDate(eventDate){ %>
+
+                                        <% // First split the event into the components that directly %>
+                                        <% // involve the numberical representations of a date. %>
+                                        <% var date = eventDate.toISOString().split("T")[0]; %>
+                                    
+                                        <% // Create variables for workring with %>
+                                        <% // the nubmers in the date variable. %>
+                                        <% var arrayDate = date.split('-'); %>
+                                        <% var day = arrayDate[2]; %>
+                                        <% var getMonth = arrayDate[1]; %>
+                                        <% var month = ""; %>
+                                        <% var year = arrayDate[0]; %>
+                                        <% var simplifiedDate = ""; %>
+                                    
+                                        <% // Use a series of conditionals to determine %>
+                                        <% // what the name of the month is based on the %>
+                                        <% // numerical representation of it. %>
+                                        <% if(getMonth.localeCompare('01') == 0) { %>
+                                            <% month = 'Jan'; %>
+                                        <% } else if(getMonth.localeCompare('02') == 0) { %>
+                                            <% month = 'Feb'; %>
+                                        <% } else if(getMonth.localeCompare('03') == 0) { %>
+                                            <% month = 'Mar'; %>
+                                        <% } else if(getMonth.localeCompare('04') == 0) { %>
+                                            <% month = 'Apr'; %>
+                                        <% } else if(getMonth.localeCompare('05') == 0) { %>
+                                            <% month = 'May'; %>
+                                        <% } else if(getMonth.localeCompare('06') == 0) { %>
+                                            <% month = 'Jun'; %>
+                                        <% } else if(getMonth.localeCompare('07') == 0) { %>
+                                            <% month = 'Jul'; %>
+                                        <% } else if(getMonth.localeCompare('08') == 0) { %>
+                                            <% month = 'Aug'; %>
+                                        <% } else if(getMonth.localeCompare('09') == 0) { %>
+                                            <% month = 'Sep'; %>
+                                        <% } else if(getMonth.localeCompare('10') == 0) { %>
+                                            <% month = 'Oct'; %>
+                                        <% } else if(getMonth.localeCompare('11') == 0) { %>
+                                            <% month = 'Nov'; %>
+                                        <% } else if(getMonth.localeCompare('12') == 0) { %>
+                                            <% month = 'Dec'; %>
+                                        <% } else { %>
+                                            <% month = 'ERROR'; %>
+                                        <% } %>
+                                    
+                                        <% // Create the simplified date and return it. %>
+                                        <% simplifiedDate = month + " " + day + ", " + year; %>
+                                        <% return simplifiedDate; %>
+                                    <% } %>
+
+                                    <!-- The date displayed utilized the function above for simplification -->
+                                    <div class="hidden">
+                                        <ul>
+                                            <li><%= simplifyEventDate(event.eventDate) %></li>
+                                            <li><%= event.eventLocation %></li>
+                                        </ul>
+                                    </div>
+
+                                    <b>Learn more<i class="fas fa-chevron-right"></i></b>
+                                </div>
+                            </a>
+
+                        <% } else { %>
+                            <!-- If the event has been cancelled by the ADMIN, do not display it -->
+                        <% } %>
+
+                    <% }); %>
+                </section>
+            <!-- </div> -->
+            <!-- Include a section for the events to be posted -->
+        <!-- </div> -->
+    </div>
+    
+ <%- include('./partials/footer.ejs') %>

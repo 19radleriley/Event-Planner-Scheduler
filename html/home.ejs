@@ -1,0 +1,47 @@
+<!-- 
+    The home.ejs file lists out the content found on 
+    the first page of the Team Aptiv web application.
+    The EJS file contains two partials: The header
+    and the footer. The home page contains a bootstrap
+    carousel with different pictures. A navbar is 
+    displayed on the top of the page in the header
+    through the header partial file, which contains
+    the navbar and all of its links. A simple title
+    reading "Connecting You with Your Community" is
+    present on the screen. Below that title, a simple
+    button is listed to bring the user to the events
+    page when it is clicked.
+    ...
+    Project: Aptiv Web Application
+    Authors: Andrew Krause, Riley Radle, 
+    Anthony Musbach, Zach Gephart
+    Class: Software Design IV (CS 341)
+    Group: #2
+    Date: 12/15/2021
+    ...
+-->
+
+<%- include('./partials/home_header.ejs') %>
+
+    <div class="home-ejs my-auto">
+        <div class="background"></div>
+        <!-- Section for the picture on the webpage -->
+        <section class="home-picture">
+            <header>
+                <h1>Team Aptiv</h1>
+                <p>Connecting You With Your Community</p>
+            </header>
+
+            <!-- Create forms to process when user clicks "Find Events" button and the "Support Us" button -->
+            <div class="buttons">
+                <form action="/find_events" method="POST">
+                    <button type="submit" class="mb-4 me-1 btn btn-outline-light btn-lg">Find Events</button>
+                </form>
+                <form action="/about">
+                    <button type="submit" class="mb-4 ms-1 btn btn-outline-light btn-lg">Support Us</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+<%- include('./partials/footer.ejs') %>

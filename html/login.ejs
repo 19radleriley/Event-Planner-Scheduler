@@ -1,0 +1,81 @@
+<!-- 
+    The login.ejs file contains a simple form that the
+    user can fill out to login to their Team Aptiv 
+    account. The EJS file also contains a footer partial
+    file as well as a unique login-register header 
+    partial file. A link to access the register page
+    is also provided in the case that the user does not
+    already have an account. The user also has the 
+    option to sign-in using Google authentication if
+    they have a Google account.
+    ...
+    Project: Aptiv Web Application
+    Authors: Andrew Krause, Riley Radle, 
+    Anthony Musbach, Zach Gephart
+    Class: Software Design IV (CS 341)
+    Group: #2
+    Date: 12/15/2021
+    ...
+-->
+
+<!-- 
+    Include EJS to display any error messages to the user if the
+    attempt to access a page that they are not authorized to access.
+    This will also appear if the user tries to volunteer or donate
+    when they are not signed in.
+-->
+<% if(permissionDenied.length > 0) { %>
+    <div class="message-format">
+        <b class="incorrect-input"><%= permissionDenied %></b>
+    </div>
+<% } %>
+
+
+<%- include('./partials/login-register_header.ejs') %>
+
+    <div class="login-register-ejs">
+        <div class="background"></div>
+        <div class="login-register-card">
+            <!-- Header for the login form -->
+            <header>
+                <h1><a href="/home">Team Aptiv</a></h1>
+                <small>Connect | Volunteer | Donate.</small>
+            </header>
+
+            <!-- 
+                Include EJS to display any error messages to the user 
+                if they entered in the wrong password information.
+            -->
+            <% if(errors.length > 0) { %>
+                <% for (let i = 0; i < errors.length; i++) { %>
+                    <div class="message-format">
+                            <b class="incorrect-input"><%= errors[i] %></b>
+                    </div>
+                <% } %>
+            <% } %> 
+
+            <div class="credentials">
+                <!-- Makes POST request to the /login route -->
+                <form action="/login" method="POST">
+                    <input placeholder="Email address" type="email" class="login-register-font form-control" name="username" required>
+                    <input placeholder="Password" type="password" class="login-register-font form-control" name="password" required>
+                    <button type="submit">Login</button>
+                </form>
+
+                <!-- Authentication sign in with Google -->
+                <div class="bottom">
+                    <small>or</small>
+
+                    <a class="google-link" href="/auth/google" role="button">
+                        <i class="fab fa-google"></i>
+                        Continue with Google
+                    </a>
+
+                    <!-- Add a link to register if the user does not already have an account -->
+                    <b>Don't have an account?<br><a class="reference-link" href="/register">Create account</a></b>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<%- include('./partials/footer.ejs') %>

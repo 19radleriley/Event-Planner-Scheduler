@@ -1,0 +1,71 @@
+<!-- 
+    The register.ejs file contains a form that a 
+    new user can fill out to create their account
+    for the web application. Required fields for 
+    creating the account include the user's first
+    name, last name, email, and password. A login
+    link is provided in the case that the user 
+    already has an account so that the user can
+    login. The user also has the option to register
+    an account using Google authentication if they
+    have a Google account. Partials are included
+    in this file to help structure the page. A 
+    footer partial file is included as well as
+    a login-register header partial file.
+    ...
+    Project: Aptiv Web Application
+    Authors: Andrew Krause, Riley Radle, 
+    Anthony Musbach, Zach Gephart
+    Class: Software Design IV (CS 341)
+    Group: #2
+    Date: 12/15/2021
+    ...
+-->
+
+<%- include('./partials/login-register_header.ejs') %>
+
+    <div class="login-register-ejs">
+        <div class="background"></div>
+        <div class="login-register-card">            
+            <!-- Header for the login form -->
+            <header>
+                <h1><a href="/home">Team Aptiv</a></h1>
+                <small>Connect | Volunteer | Donate.</small>
+            </header>
+
+            <!-- 
+                Include EJS to display any error messages to the user if
+                they attempt to register with a username that already exists.
+            -->
+            <% if(alreadyCreated.length > 0) { %>
+                <div class="card-body elementToFadeInAndOut message-format">
+                    <h1 class="incorrect-input"><%= alreadyCreated %></h1>
+                </div>
+            <% } %>
+
+            <div class="credentials">
+                <!-- Makes a POST request to the /register route -->
+                <form action="/register" method="POST">
+                    <input placeholder="First name" type="fname" class="login-register-font form-control" name="fname" maxlength="100" required>
+                    <input placeholder="Last name" type="lname" class="login-register-font form-control" name="lname" maxlength="100" required>
+                    <input placeholder="Email address" type="email" class="login-register-font form-control" name="username" maxlength="100" required>
+                    <input placeholder="password" type="password" class="login-register-font form-control" name="password" maxlength="100" required>
+                    <button type="submit">Register</button>
+                </form>
+
+                <!-- Authentication sign up with Google -->
+                <div class="bottom">
+                    <small>or</small>
+
+                    <a class="google-link" href="/auth/google" role="button">
+                        <i class="fab fa-google"></i>
+                        Continue with Google
+                    </a>
+                    <!-- Add a link to login if the user already has an account -->
+                    <b>Already have an account?<br><a class="reference-link" href="/login">Login</a></b>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<%- include('./partials/footer.ejs') %>

@@ -1,0 +1,33 @@
+<!--
+  The footer.ejs file is used as a template for most of the other
+  pages on the website. The footer is comprised of a colorized
+  section with links to socials. The footer also contains the 
+  current year (this changes automatically to the current year)
+  as well as the authors of the web application that this footer
+  is a part of.
+  ...
+  Project: Aptiv Web Application
+  Authors: Andrew Krause, Riley Radle, 
+  Anthony Musbach, Zach Gephart
+  Class: Software Design IV (CS 341)
+  Group: #2
+  Date: 12/15/2021
+  ...
+-->
+<footer id="footer-section">
+    <a class="text-outline" href="https://www.facebook.com/Aptiv.org"><i class="footer-icon fab fa-facebook"></i></a>
+    <a class="text-outline" href="https://www.instagram.com/aptivorg/"><i class="footer-icon fab fa-instagram"></i></a>
+    <a class="text-outline" href="https://www.linkedin.com/company/aptivorg/"><i class="footer-icon fab fa-linkedin"></i></a>
+    <a class="text-outline" href="https://www.youtube.com/channel/UC7z4eF4v1CrUQmclwtXoyBw?view_as=subscriber"><i class="footer-icon fab fa-youtube"></i></a> 
+    <!-- <i class="white-text footer-icon fas fa-envelope"></i></p> -->
+    <p class="text-outline">© Copyright <%= new Date().getFullYear() %> CS 341 by Andrew Krause, Riley Radle, Anthony Musbach, Zach Gephart.</p>
+</footer>
+
+<!-- Include a link to the JavaScript file. -->
+<!-- <script src="../../javascript/temporary.js"></script> --> <!-- UNCOMMENT THIS IF YOU DECIDE TO USE THE JAVASCRIPT FILE!!! -->
+
+<!-- If you include a link to the JQuery CDN, this should go near the bottom of the page. -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" type="text/javascript"></script>
+</body>
+
+</html>

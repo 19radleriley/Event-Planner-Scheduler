@@ -1,0 +1,78 @@
+<!-- 
+    The event_creation.ejs file contains the structure
+    for the form that the admin user fills out to 
+    create a new event. Fields that the admin fills out
+    to create a new event include the event name, the
+    event date, the event start time, the event end
+    time, the event description, the number of needed
+    volunteers, and the number of needed donors. The
+    admin can cancel the event creation at any time by
+    hitting the "cancel" button. 
+    ...
+    Project: Aptiv Web Application
+    Authors: Andrew Krause, Riley Radle, 
+    Anthony Musbach, Zach Gephart
+    Class: Software Design IV (CS 341)
+    Group: #2
+    Date: 12/15/2021
+    ...
+-->
+
+<%- include('./partials/home_header.ejs') %>
+
+    <div class="event-creation-ejs">
+        <div class="create-card">
+            <!-- Create a title for the event creation page.-->
+            <header>
+                <h1>Create a New Event</h1>
+            </header>
+            
+            <!-- Makes POST request to the /login route -->
+            <div class="info">
+                <form action="/added_event" method="POST">
+                    <!-- Makes POST request to the /login route -->
+                    <input placeholder="Event name" type="title" class="login-register-font form-control" name="eventname" required>
+    
+                    <!-- Use JavaScript to get the current date. This is done to help set the miniumum -->
+                    <!-- value for the date input. It ensures the ADMIN cannot set a date before the current -->
+                    <% var today = new Date(); %>
+                    <% var dd = today.getDate(); %>
+                    <% var mm = today.getMonth()+1; // January is 0 so need to add 1 to make it 1! %>
+                    <% var yyyy = today.getFullYear(); %>
+    
+                    <% if(dd<10){ %>
+                    <%  dd='0'+dd %>
+                    <% } %>
+    
+                    <% if(mm<10){ %>
+                    <%  mm='0'+mm %>
+                    <% } %>
+    
+                    <% today = yyyy+'-'+mm+'-'+dd; %>                                    
+    
+                    <!-- Inputs for the event attributes along with a "Create Event" button -->
+                    <input placeholder="Date" type="date" class="login-register-font form-control" min=<%= today %> name="eventdate" required>
+                    <input placeholder="Start time" type="time" class="login-register-font form-control" name="eventstarttime" required>
+                    <input placeholder="End time" type="time" class="login-register-font form-control" name="eventendtime" required>
+                    <!-- <div class="form-group mt-2"> !!! MAYBE DELETE THIS LATER
+                        <label class="login-register-font control-label" for="time">Time Increments (in minutes)</label>
+                        <input type="number" class="login-register-font form-control" name="eventtimeincrements" required>
+                    </div> -->
+                    <input placeholder="Location" type="text" class="login-register-font form-control" name="eventlocation" required>
+                    <input placeholder="Description (optional)" type="text" class="login-register-font form-control" name="eventdescription"> 
+                    <input placeholder="Needed volunteers" type="number" class="login-register-font form-control" name="eventvolunteers" min="0" required>
+                    <input placeholder="Donation Goal" type="number" class="login-register-font form-control" name="eventdonations" min="0" required>
+                    <button type="submit" class="btn btn-outline-light">Create Event</button>
+                </form>    
+
+                <!-- Cancel button -->
+                <form class="cancel" action="/cancel" method="POST">
+                    <div>
+                        <button type="submit" class="btn btn-outline-light"><i class="fas fa-times"></i> Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<%- include('./partials/footer.ejs') %>
