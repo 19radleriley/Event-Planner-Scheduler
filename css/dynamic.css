@@ -1,0 +1,112 @@
+/*
+ * Author: Riley Radle
+ * Description: 
+ *      This file adds dynamic styles through css.  It allows
+ *      the website to be mobile friendly on a basic level
+ *
+ * Last Edited: December 2021
+ * Group: #2
+ * Date: 12/15/2021
+ */
+
+/* Media query to shift to mobile view */
+@media (max-width: 50em) {
+
+/* ====================================================================
+                            HOME.EJS STYLES
+ ==================================================================== */
+
+    .home-ejs .home-picture {
+        text-align: center;
+        padding: 0;
+    }
+
+    .home-ejs .home-picture .buttons {
+        justify-content: center;
+    }
+
+/* ====================================================================
+                        EVENTS.EJS STYLES
+==================================================================== */
+
+    .events-ejs .background {
+        background-image: url("../images/LR-Illustration.png");
+        background-position: right;
+    }
+
+    .events-ejs header {
+        position: static;
+        transform: none;
+        text-align: center;
+    }
+
+    .events-ejs .events-list {
+        float: none;
+        margin: auto;
+        width: 75%;
+    }
+
+    .events-ejs header > h1 {
+        font-size: clamp(4em, 10vw, 6em);
+    } 
+
+    .events-ejs header > small {
+        padding: 0;
+    }
+
+/* ====================================================================
+                        SPECIFIC_EVENT.EJS STYLES
+==================================================================== */
+
+    .specific-event-ejs {
+        display: block;
+        margin: auto;
+    }
+
+    .specific-event-ejs > *, 
+    .specific-event-ejs .volunteer-donate > div {
+        margin-bottom: 1em;
+    }
+
+    .specific-event-ejs .volunteer-donate > div,
+    .specific-event-ejs .event {
+        margin-inline: auto;
+        width: 100%;
+    }
+
+
+/* ====================================================================
+                            ABOUT.EJS STYLES
+==================================================================== */
+    .about-ejs .main {
+        display: block;
+    }
+
+/* ====================================================================
+                    USER/ADMIN_PROFILE.EJS STYLES
+==================================================================== */
+
+    .profile-ejs .profile > header .icons {
+        position: static;
+        padding: .5em 0;
+        text-align: left;
+    }
+
+    .profile-ejs .profile-content .profile-nav button > span {
+        display: none;
+    }
+
+    .profile-ejs .profile-content .profile-nav button > i {
+        font-size: 1.75rem;
+        width: 100%;
+    }
+
+    /* If we are in mobile view, don't have button animation */
+    .profile-ejs .profile-nav button:hover::before {
+        transform: scaleX(0%);
+    }
+
+    .profile-ejs .profile-content .right-content {
+        width: 80%;
+    }
+}

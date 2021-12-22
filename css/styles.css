@@ -1,0 +1,940 @@
+/*
+    Authors: Andrew Krause, Zach Gephart, Anthony Musbach, Riley Radle
+    
+    Description:
+        This file contains all of the custom styling for the web app.
+            
+    Navigation: 
+        Styles are organized into sections
+            1. General styles (top of file)
+            2. Styles for each page
+            3. ID selected styles (bottom of file)
+
+        Within each section styles should be ordered 
+        based on subjective importance
+
+        To quickly find a section:
+            - Use command/ctrl f
+            - Search for ...
+                * General styles
+                * <page_name>.ejs styles
+                * ID styles
+
+    Class: CS 341, Fall 2021
+    Group: #2
+    Date: 12/15/2021
+ */
+
+ /* Import fonts */
+ @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&family=Mochiy+Pop+P+One&display=swap&family=Gochi+Hand&display=swap&'); 
+ @import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro&display=swap&family=Fjord+One&display=swap');
+/* ====================================================================
+                            GENERAL STYLES
+ ==================================================================== */
+
+    /* Define custom global properties */
+    :root {
+        --foreground-color: rgb(31, 31, 31);
+        --background-primary: #f0f0f0; /* Background of the body */
+        --background-secondary: white; /* Background of the cards */
+        --theme1: rgb(235, 139, 50); /* This is used for a lot of the box shadows */
+
+        --box-shadow1: 5px 5px 1em rgba(0, 0, 0, 30%);
+        --box-shadow2: 5px 5px 2em rgba(0, 0, 0, 30%);
+        --box-shadow2Small: 5px 5px 1.5em rgba(0, 0, 0, 30%);
+
+        /* CAN CHANGE THE FONT SIZE HERE TO CHANGE THE FONT FOR THE WHOLE SITE */
+        font-size: 1rem;
+    }
+
+    /* Format content within the body tag of the HTML structure */
+    body {
+        margin: 0;
+        font-family: "Source Serif Pro", serif; 
+        background-color: var(--background-primary); /* FIXME!!! IMAGES DON'T HAVE TRANSPARENT BACKGROUNDS */
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Change the specific font for top and second leve headings */
+    h1, h2 {
+        font-family: "Fjord One", serif;
+    }
+
+    /* Get rid of the default styling for lists */
+    ul {
+        list-style: circle;
+        padding: 0px;
+    }
+
+    /* Aligns the footer to the bottom of the viewport */
+    footer {
+        margin-top: auto;
+        text-align: center;
+    }
+
+    /* Footer styles */
+    footer i {
+        color: var(--background-primary);
+        transition: color .25s;
+    }
+
+    footer i:hover {
+        color: var(--theme1)
+    }
+
+    /* ~~~~~~~~~~~~~ General Class Selectors ~~~~~~~~~~~~~ */
+
+    /* Add an outline to the text in the footer of each page */
+    .text-outline {
+        text-shadow:
+        -0.063rem -0.063rem 0 #000,
+        0.063rem -0.063rem 0 #000,
+        -0.063rem 0.063rem 0 #000,
+        0.063rem 0.063rem 0 #000;
+    }
+
+    /* Set styles for the background images of each page */
+    .background {
+        position: fixed;
+        inset: 0 0 0 0;
+        background-size: cover;
+        /* background-position: center; */
+        z-index: -1;
+    }
+
+    /* Change the basic styles of bootstrap buttons */
+    .btn-outline-light {
+        color: var(--foreground-color);
+        border: 1px solid var(--foreground-color);
+    }
+
+    .btn-outline-light:hover {
+        color: var(--background-primary);
+        background-color: var(--foreground-color);
+        border: 1px solid var(--theme1);
+    }
+
+    /* Style incorrect login with redish color. */
+    .incorrect-input {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: fit-content;
+        background-color: rgb(255, 169, 169);
+        color: rgb(255, 60, 60);
+        border: 2px solid rgb(255, 60, 60);
+        animation: drop 7s forwards;
+        z-index: 100;
+    }
+
+    /* Style confirmation message with greenish color. */
+    .confirmation {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: fit-content;
+        background-color: rgb(207, 246, 207);
+        color: rgb(145, 182, 145);
+        border: 2px solid rgb(145, 182, 145);
+        animation: drop 7s forwards;
+        z-index: 100;
+    }
+
+    .cancelled {
+        text-decoration: line-through;
+    }
+
+    /* Key frames fade. */
+    @keyframes drop {
+        0% {
+            transform:  translateY(-100%) translateX(calc(-50vw + 50%));
+        }
+        15% {
+            transform: translateY(0%) translateX(calc(-50vw + 50%));
+        }
+        85% {
+            transform: translateY(0%) translateX(calc(-50vw + 50%));
+        }
+        100% {
+            transform: translateY(-100%) translateX(calc(-50vw + 50%));
+            display: none;
+         }
+    }
+
+    /* Format the messages sent to the user */ 
+    .message-format {
+        display: inline-block;
+        text-align: center;
+        font-size: 3rem;
+        width: fit-content;
+    }
+
+ /* ====================================================================
+                            HOME.EJS STYLES
+ ==================================================================== */
+
+    .home-ejs .background {
+        background-image: url('../images/Home-Illustration.png');
+    }
+
+    .home-ejs .home-picture {
+        text-align: left;
+        padding-left: 5%;
+        color: var(--foreground-color);
+    }
+
+    /* Styles the main text on the home page */
+    .home-ejs .home-picture h1 {
+        font-size: clamp(5rem, 12vw, 7rem);
+        line-height: 95%;
+    }
+
+    .home-ejs .home-picture p {
+        text-decoration: underline var(--theme1);
+        font-size: clamp(1.5rem, 3vw, 2rem);
+    }
+
+    .home-ejs .home-picture .buttons {
+        display: flex;
+    }
+
+
+ /* ====================================================================
+                        HOME_HEADER.EJS STYLES
+ ==================================================================== */
+
+    /* Set font size of the navbar links. */
+    .navbar .navbar-nav .nav-link {
+        padding-right: 1rem;
+        font-size: 1.5rem;
+        color: var(--foreground-color);
+        transition: all .25s;
+    }
+
+    /* Potentially delete */
+    .navbar .navbar-brand {
+        color: var(--foreground-color);
+    }
+
+    /* Right align the collapsed navbar links */
+    .nav-item {
+        text-align: right;
+    }
+
+    /* Set the color of the hamburger menu icon */
+    .navbar .navbar-toggler {
+        color: var(--foreground-color);
+        transition: all .25s;
+    }
+
+    .navbar .navbar-toggler i {
+        font-size: 1.5em;
+    }
+
+    /* Set hover states for section */
+    .navbar .navbar-nav .nav-link:hover,
+    .navbar .navbar-toggler:hover {
+        color: var(--theme1);
+    }
+
+
+ /* ====================================================================
+                    LOGIN.EJS / REGISTER.EJS STYLES
+ ==================================================================== */
+
+    .login-register-ejs .background {
+        background-image: url("../images/LR-Illustration.png");
+    }
+
+    .login-register-ejs .login-register-card {
+        width: clamp(25em, 60vw, 40em);
+        margin: 3em auto;
+        border-radius: .5em;
+        background-color: var(--background-secondary);
+        box-shadow: var(--box-shadow1);
+        transition: box-shadow .25s;
+    }
+
+    .login-register-ejs .login-register-card:hover {
+        box-shadow: var(--box-shadow2);
+    }
+
+    .login-register-card header {
+        padding: 1em 1em 1.5em 1em;
+        border-bottom: 5px solid var(--theme1);
+        border-radius: .5em .5em 0 0;
+        background-color: var(--foreground-color);
+        color: var(--background-secondary);
+        line-height: 30%;
+        text-align: center;
+    }
+
+    .login-register-card header a {
+        color: var(--background-secondary);
+        text-decoration: none;
+        font-size: 4rem; 
+        transform: translateY(0%);
+        transition: color .25s;
+    }
+
+    .login-register-card header a:hover {
+        color: var(--theme1);
+    }
+
+    .login-register-card header small {
+        font-size: 1rem;
+    }
+
+    .login-register-card .credentials {
+        width: 60%;
+        margin: auto;
+        padding: 2em 0;
+    }
+
+    .login-register-card .credentials input {
+        font-size: 1.25rem;
+        margin: .5em 0;
+    }
+
+    .login-register-card .credentials button {
+        width: 100%;
+        background-color: var(--theme1);
+        color: var(--background-secondary);
+        border: none;
+        border-radius: .20em;
+        padding: .375rem .75rem;
+        font-size: 1.25rem;
+    }
+
+    .login-register-card .bottom > * {
+        display: block;
+        padding: .375rem .75rem;
+        margin: .5em 0;
+        text-align: center;
+        font-size: 1.25rem;
+    }
+
+    .login-register-card .bottom > small {
+        overflow: hidden;
+    }
+
+    /* This adds a horizontal line around the 'or' in the login/register page */
+    .login-register-card .bottom > small::before,
+    .login-register-card .bottom > small::after {
+        content: "";
+        display: inline-block;
+        position: relative;
+        vertical-align: middle;
+        width: 50%;
+        height: 1px;
+        background-color: var(--foreground-color);
+    }
+
+    /* Used to place a horizonal line before 'or' */
+    .login-register-card .bottom > small::before {
+        right: .5em;
+        margin-left: -50%;
+    }
+
+    /* Used to place a horizonal line after 'or' */
+    .login-register-card .bottom > small::after {
+        left: 0.5em;
+        margin-right: -50%;
+    }
+
+    .login-register-card .bottom .google-link {
+        text-decoration: none;
+        color: var(--foreground-color);
+        border: 1px solid var(--foreground-color);
+        border-radius: .20em;
+    }
+
+    .login-register-card .bottom .google-link > i {
+        color: var(--theme1);
+        padding: .25em;
+    }
+
+    .login-register-card .bottom b {
+        margin-top: 2em;
+        font-weight: 400;
+    }
+
+    .login-register-card .bottom b > a {
+        text-decoration: none;
+        color: var(--theme1);
+    }
+
+/* ====================================================================
+                           EVENTS.EJS STYLES
+ ==================================================================== */
+
+    .events-ejs .background {
+        background-image: url('../images/Events-Illustration.png');
+    }
+
+    .events-ejs {
+        width: 80%;
+        margin: auto;
+    }
+
+    .events-ejs header {
+        color: var(--foreground-color);
+        position: fixed;
+        font-variant: small-caps;
+        left: clamp(1em, 5vw, 5em);
+        bottom: 0;
+        transform: translateY(-45vh);
+    }
+
+    /* Style the top level heading */
+    .events-ejs header > h1 {
+        font-size: clamp(2rem, 7vw, 8rem);
+        line-height: 75%;
+    } 
+
+    .events-ejs .events-list {
+        width: 50%;
+        float: right;
+    }
+
+    /* Style the Volunteer | Donate comment in the header */
+    .events-ejs header > small {
+        font-size: clamp(1.5rem, 2vw, 2rem);
+        padding-left: 2em;
+    }
+
+    .events-ejs .event {
+        position: relative;
+        margin-top: 1.5em;
+        padding: 1em;
+        border-radius: .5em;
+        background-color: var(--background-secondary);
+        box-shadow: var(--box-shadow1);
+        transition: all .5s;
+    }
+
+    .events-ejs .event > h2 {
+        font-size: 2.5rem;
+        border-bottom: 3px solid var(--theme1);
+        width: fit-content;
+    }
+
+    .events-ejs .event .hidden {
+        margin: 0 1em;
+        font-size: 1.5rem;
+        opacity: 0%;
+        transition: opacity .5s;
+    }
+
+    /* Get rid of the underlines for the text on the event cards */
+    .events-ejs .events-list > a {
+        color: var(--foreground-color);
+        text-decoration: none;
+    }
+
+    .events-ejs .event > b {
+        font-size: 1.5rem;
+    }
+
+    .events-ejs .event > b > i {
+        padding-left: 1em; 
+        font-size: .75em;
+    }
+
+    /* Set the hover state for the cards */
+    .events-ejs .event::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 10px;
+        border-radius: 0 0 5px 5px;
+        background-color: var(--theme1);
+        transform: scaleX(0%);
+        transform-origin: left;
+        transition: transform .5s;
+    }
+    .events-ejs .event:hover::before {
+        transform: scaleX(100%);
+    }
+
+    .events-ejs .event:hover {
+        box-shadow: var(--box-shadow2Small);
+    }
+
+    .events-ejs .event:hover .hidden {
+        opacity: 100%;
+    }
+
+/* ====================================================================
+                           SPECIFIC_EVENT.EJS STYLES
+ ==================================================================== */
+
+ .specific-event-ejs {
+     color: var(--foreground-color);
+     width: 80%;
+     margin: auto;
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+  }
+
+  /* Background is placed as next sibling in order to not affect grid layout */
+  .specific-event-ejs + .background {
+      background-image: url('../images/Event-Illustration.png');
+  }
+
+ .specific-event-ejs .event {
+    position: relative;
+    padding: 1em 1em 2em;
+    width: 90%;
+    margin: auto;
+    height: fit-content;
+    border-radius: .5em;
+    box-shadow: var(--box-shadow1);
+    background-color: var(--background-secondary);
+    transition: all .5s;
+ }
+
+ .specific-event-ejs .event > h1 {
+     font-size: clamp(2.5rem, 3vw, 3.5rem);
+     border-bottom: 3px solid var(--theme1);
+     width: fit-content;
+ }
+
+ .specific-event-ejs .event li {
+    font-size: 1.5rem;
+    list-style: circle;
+    margin-left: 1em;
+    padding-bottom: .5em;
+ }
+
+ /* Style the buttons in the event card */
+ .specific-event-ejs .event .btn-container {
+    position: absolute;
+    right: 1em;
+    bottom: 1em;
+    display: flex;
+    gap: 1em;
+ }
+
+ .specific-event-ejs .volunteer, .specific-event-ejs .donate {
+    padding: .75em;
+    width: 70%;
+    margin-bottom: 1.5em;
+    border-radius: .5em;
+    box-shadow: var(--box-shadow1);
+    background-color: var(--background-secondary);
+    transition: all .5s;
+ }
+
+ /* Make the labels for donating and volunteering the same font size */
+ .specific-event-ejs .volunteer-donate .form-title {
+    font-size: 1.75rem;
+    border-bottom: 3px solid var(--theme1);
+    margin-bottom: .5em;
+ }
+ 
+ .specific-event-ejs .volunteer-donate .form-title-no-border {
+    display: block;
+    font-size: 1.75rem;
+ }
+
+ .specific-event-ejs .volunteer .form-title {
+     display: inline;
+ }
+
+ .specific-event-ejs .submit-container {
+     text-align: right;
+ }
+
+ /* Set the hover state of the cards to have a slight animation */
+ .specific-event-ejs .event:hover, .specific-event-ejs .volunteer:hover, 
+    .specific-event-ejs .donate:hover {
+        box-shadow: var(--box-shadow2);
+ }
+    
+
+/* ====================================================================
+                        USER/ADMIN_PROFILE.EJS STYLES
+ ==================================================================== */
+
+    .profile-ejs .background {
+        background-image: url("../images/Profile-Illustration.png");
+    }
+
+    .profile-ejs .profile {
+        width: clamp(30em, 60vw, 60em); 
+        position: relative;
+        margin: 3em auto;   
+        box-shadow: var(--box-shadow1);
+        background-color: var(--background-secondary);
+        border-radius: .5em;
+        transition: box-shadow .25s;
+    }
+
+    .profile-ejs .profile:hover {
+        box-shadow: var(--box-shadow2);
+    }
+
+    /* Sytles for the profile header */
+    .profile-ejs .profile > header {
+        display: flex;
+        align-items: center;
+        padding: 1em;
+        background-color: var(--foreground-color);
+        border-bottom: 5px solid var(--theme1);
+        border-radius: .5em .5em 0 0;
+    }
+
+    .profile-ejs .profile > header .user-info {
+        padding-left: 1em;
+        color: var(--background-primary);
+    }
+
+    .profile-ejs .profile > header .user-info > h1 {
+        font-size: clamp(3rem, 7vw, 4rem);
+        border-bottom: 3px solid var(--background-primary);
+    }
+
+    .profile-ejs .profile > header .icons {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 1em;
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        line-height: 75%;
+        font-family: "Gochi Hand";
+        text-align: right;
+    }
+
+    .profile-ejs .profile > header .user-info > * {
+        margin: 0;
+    }
+
+    /* Styles for the profile content */
+    .profile-ejs .profile-content {
+        display: flex;
+        position: relative;
+        padding: 1em;
+    }
+
+    .profile-ejs .profile-content .profile-nav button {
+        display: block;
+        position: relative;
+        margin-bottom: .5em;
+        border: none;
+        background-color: transparent;
+        font-size: 1.25rem;
+    }
+
+    .profile-ejs .btn {
+        font-size: clamp(.75rem, 1.5vw, 1.25rem);
+    }
+
+    /* Give the buttons a nice hover animation */
+    .profile-ejs .profile-nav button::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        height: .15em;
+        background-color: var(--theme1);
+        transform: scaleX(0%);
+        transform-origin: left;
+        transition: transform .25s;
+    }
+
+    .profile-ejs .profile-nav button:hover {
+        cursor: pointer;
+    }
+
+    .profile-ejs .profile-nav button:hover::before {
+        transform: scaleX(100%);
+    }
+
+    .profile-ejs .profile-content .right-content {
+        width: 70%;
+        position: relative;
+        margin: 0 auto;
+    }
+
+    .profile-ejs .profile-content .total-donations {
+        width: fit-content;
+        margin: 0 0 .5em;
+        border-bottom: 5px solid var(--theme1);
+        font-family: "Gochi Hand";
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        line-height: 75%;
+    }
+
+    /* Styles to either hide or show the right content */
+    .profile-ejs #events-list[data-visible="true"],
+    .profile-ejs #users-list[data-visible="true"],
+    .profile-ejs #settings[data-visible="true"], 
+    .profile-ejs #cancelledevent-list[data-visible="true"] {           
+        opacity: 100%;
+        position: relative;
+        transform: translateY(0%);
+        transition: opacity 1s, transform .5s, border-color .25s;
+    }
+
+    /* Styles to either hide or show the right content */
+    .profile-ejs #events-list[data-visible="false"],
+    .profile-ejs #users-list[data-visible="false"],
+    .profile-ejs #settings[data-visible="false"],
+    .profile-ejs #cancelledevent-list[data-visible="false"] {
+        opacity: 0%; 
+        position: absolute;
+        pointer-events: none;
+        transform: translateY(-10%);       
+    }
+
+    .profile-ejs .profile-content .event,
+    .profile-ejs .profile-content .user,
+    .profile-ejs .profile-content .cancelledevent {     
+        position: relative;
+        padding: 1em 1em 3em 1em;
+        margin-bottom: .5em;
+        border-radius: .5em;
+        border: 2px solid var(--foreground-color);
+        transition: all .25s;
+    }
+
+    .profile-ejs .profile-content .event:hover,
+    .profile-ejs .profile-content .user:hover,
+    .profile-ejs .profile-content .cancelledevent:hover {
+        border-color: var(--theme1);
+    }
+ 
+    .profile-ejs .profile-content .event > h2,
+    .profile-ejs .profile-content .user > h2,
+    .profile-ejs .profile-content .cancelledevent > h2 {
+        width: fit-content;
+        border-bottom: 2px solid var(--foreground-color);
+        transition: border-color .25s;
+    }
+    
+    .profile-ejs .profile-content .event:hover > h2,
+    .profile-ejs .profile-content .user:hover > h2,
+    .profile-ejs .profile-content .cancelledevent:hover > h2 { 
+        border-color: var(--theme1);
+    }
+
+    .profile-ejs .profile-content .event > ul,
+    .profile-ejs .profile-content .user > ul,
+    .profile-ejs .profile-content .cancelledevent > ul {
+        margin: 0 1em;
+    }
+
+    .profile-ejs .profile-content .event button,
+    .profile-ejs .profile-content .user button,
+    .profile-ejs .profile-content .cancelledevent button {
+        position: absolute;
+        bottom: .5em;
+        right: .5em;
+    }
+    
+    .profile-ejs #settings {
+        position: relative;
+        padding: 1em;
+        border-radius: .5em;
+        border: 2px solid var(--foreground-color);    
+    }
+
+    .profile-ejs #settings:hover, 
+    .profile-ejs #settings:hover h3 {
+        border-color: var(--theme1);
+    }
+
+    .profile-ejs #settings h3 {
+        border-bottom: 2px solid var(--foreground-color);
+        width: fit-content;
+        transition: border-color .25s;
+    }
+
+    .profile-ejs #settings button[type="submit"] {
+        position: absolute;
+        bottom: .5em;
+        right: .5em;
+    }
+
+/* ====================================================================
+                        EVENT_CREATION STYLES
+ ==================================================================== */
+
+    .event-creation-ejs .create-card {
+        width: clamp(30em, 60vw, 60em); 
+        position: relative;
+        margin: 3em auto;   
+        box-shadow: var(--box-shadow1);
+        background-color: var(--background-secondary);
+        border-radius: .5em;
+        transition: box-shadow .25s;
+    }
+
+    .event-creation-ejs .create-card:hover {
+        box-shadow: var(--box-shadow2);
+    }
+
+    .create-card header {
+        padding: 1em;
+        border-bottom: 5px solid var(--theme1);
+        border-radius: .5em .5em 0 0;
+        background-color: var(--foreground-color);
+        color: var(--background-secondary);
+        text-align: center;
+    }
+
+    .create-card header > h1 {
+        font-size: 3rem;
+        text-decoration: underline;
+    }
+
+    .create-card .info {
+        width: 60%;
+        margin: auto;
+        padding: 2em 0 5em;
+    }
+
+    .create-card .info input {
+        font-size: 1.25rem;
+        margin: .5em 0;
+    }
+
+    .create-card .info button {
+        display: inline;
+        float: left;
+        margin-right: .5em;
+    }
+
+ /* ====================================================================
+                           ABOUT.EJS STYLES
+ ==================================================================== */
+
+    .about-ejs .background {
+        background-image: url("../images/Mission-Illustation.png");
+    }
+
+    .about-ejs {
+        color: var(--foreground-color);
+    }
+
+    .about-ejs .wrapper {
+        width: clamp(40em, 90%, 100em);
+        margin: auto;
+    }
+
+    .about-ejs .main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .about-ejs .mission, .about-ejs .donate {
+        margin: 1.5em;
+        padding: 1em;
+        background-color: var(--background-secondary);
+        box-shadow: var(--box-shadow1);
+        border-radius: .5em;
+        transition: all .6s;   
+    }
+
+    .about-ejs .mission h2 {
+        font-size: clamp(2.5rem, 5vw, 3rem);
+    }
+
+    .about-ejs .mission li {
+        margin-left: 2em;
+    }
+
+    .about-ejs .mission b { 
+        font-size: 1.25rem;
+        font-style: oblique;
+    }
+
+    .about-ejs .donate {
+        height: fit-content;
+    }
+
+    .about-ejs .help {
+        margin: 1.5em;
+        padding: 1em;
+        background-color: var(--background-secondary);
+        box-shadow: var(--box-shadow1);
+        border-radius: .5em;
+        transition: all .6s;   
+    }
+
+    .about-ejs .help a {
+        position: relative;
+        padding: .25em;
+        border-radius: .25em 0 0 .25em;
+        background-color: var(--foreground-color);
+        color: var(--background-secondary);
+        text-decoration: none;
+    }
+
+    .about-ejs .help i {
+        padding: .37em;
+        color: var(--background-secondary);
+        background-color: var(--foreground-color);
+        border-radius: 0 .25em .25em 0;
+        transform: translateY(1px);
+        transition: transform .25s ease;
+    }
+
+    .about-ejs .help a:hover + i {
+        transform: translateX(50%) rotate(90deg);
+    }
+
+    .about-ejs .mission > h2, .about-ejs .donate > h2 {
+        border-bottom: 3px solid var(--theme1);
+        width: fit-content;
+    }
+
+    .about-ejs .mission:hover, .about-ejs .donate:hover, .about-ejs .help:hover {
+        box-shadow: var(--box-shadow2);
+    }
+
+/* ====================================================================
+                                ID STYLES
+ ==================================================================== */
+
+    /* Add color to footer section of page. */
+    #footer-section {
+        color: var(--background-primary);
+    }
+
+    #footer-section p {
+        font-size: .75rem;
+    }
+
+    /* Format profile picture for user profile. */
+    #profileImage {
+        width: 10em;
+        overflow: hidden;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        border-radius: 50%;
+        background-color: var(--background-secondary);
+    }
+
+    /* Custom logo that is in the navbar */
+    #custom-logo {
+        font-size: 1.5rem;
+        font-family: "Mochiy Pop P One";
+        color: var(--foreground-color);
+        outline: 2px solid var(--foreground-color);
+        border-radius: 1em;
+        transition: all .5s;
+    }
+
+    #custom-logo:hover {
+        background-color: var(--foreground-color);
+        color: var(--background-primary);
+    }
