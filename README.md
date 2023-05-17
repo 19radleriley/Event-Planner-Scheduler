@@ -1,4 +1,4 @@
-# Event-Planner-Scheduler
+# Team Aptiv Event-Planner-Scheduler
 ## View the project *[here](https://team-aptiv-project.herokuapp.com/)*
 ## View the full source code *[here](https://github.com/Krause2023/CS341-Aptiv-Web_App)*
 
