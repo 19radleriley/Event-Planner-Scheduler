@@ -1,4 +1,5 @@
 # Team Aptiv Event-Planner-Scheduler
+<i>This is the frontend code I contributed to the project</i>
 ## View the project *[here](https://team-aptiv-project.herokuapp.com/)*
 ## View the full source code *[here](https://github.com/Krause2023/CS341-Aptiv-Web_App)*
 
